@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import Button from 'primevue/button';
-
+import HelloWorld from "./components/HelloWorld.vue";
+import Button from "primevue/button";
 </script>
 
 <template>
+   <router-view>
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -14,8 +14,10 @@ import Button from 'primevue/button';
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-          <Button label="Submit" />
+  <Button label="Submit" />
+  <router-link to="/index">首頁</router-link>
 
+ </router-view>
 </template>
 
 <style scoped>
