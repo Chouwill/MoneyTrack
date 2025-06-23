@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+
+body {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+* {
+  box-sizing: border-box;
+  /* border: none; */
+}
