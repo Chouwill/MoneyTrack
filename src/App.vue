@@ -1,36 +1,22 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
 import Button from "primevue/button";
 </script>
 
-<template>
-   <router-view>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-  <Button label="Submit" />
-  <router-link to="/index">首頁</router-link>
 
- </router-view>
+ <template>
+  <header class="w-full bg-white shadow-md p-4 flex justify-between items-center">
+    <div class="text-xl font-bold text-blue-600">MoneyTrack</div>
+    <nav class="flex gap-4 text-gray-600">
+      <a href="#" class="hover:text-blue-500">首頁</a>
+      <a href="#" class="hover:text-blue-500">關於</a>
+      <a href="#" class="hover:text-blue-500">聯絡我們</a>
+    </nav>
+    <div class="flex gap-2">
+      <button class="px-4 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50">登入</button>
+      <button class="px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">註冊</button>
+    </div>
+  </header>
+
+
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
