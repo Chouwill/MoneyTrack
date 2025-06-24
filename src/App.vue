@@ -4,7 +4,7 @@ import Button from "primevue/button";
 </script>
 
 <template>
-  <div class="container max-w-none bg[3]">
+  <div class="container border max-w-none flex justify-center items-center flex-col">
     <Header />
 
     <Router-view></Router-view>
