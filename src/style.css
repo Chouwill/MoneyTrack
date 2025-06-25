@@ -18,3 +18,8 @@ body {
 form{
   /* border: 5px solid rgb(151, 14, 133); */
 }
+
+
+.errorText{
+color: red;
+}
