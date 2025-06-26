@@ -5,6 +5,7 @@ import { ref } from "vue";
 import InputText from "primevue/inputtext";
 import { email } from "zod/v4";
 import { Password } from "primevue";
+import { onRegister } from "../api/method";
 
 const formData = ref({
   email: "",
@@ -49,17 +50,24 @@ const checkField = (field: any) => {
   }
 };
 
-const handleUserRegister = () => {
+const handleUserRegister = async () => {
   console.log(formData.value);
   const result = registerSchema.safeParse(formData.value);
 
   console.log(result);
   if (result.success === true) {
     console.log("驗證true");
+    try {
+      const res = await onRegister(formData.value);
+
+      console.log("註冊api回傳", res);
+    } catch (e) {
+      console.log(e);
+    }
   } else {
     console.log("驗證false");
 
-    errorMessage.value.text = '註冊失敗';
+    errorMessage.value.text = "註冊失敗";
 
     console.log(errorMessage.value.email);
   }
