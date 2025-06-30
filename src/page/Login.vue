@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import InputText from "primevue/inputtext";
-
+import { onLogin } from "../api/method";
 import { ref } from "vue";
 import { z } from "zod";
+import cookie from "../util/useCookie"
 
 const loginSchema = z.object({
   email: z.string().email({ message: "email必填" }).nonempty(),
@@ -23,7 +24,7 @@ const errorMessage = ref({
   text: "",
 });
 
-const checkField = (field) => {
+const checkField = (field:any) => {
   console.log("單欄驗證", formData.value);
 
   const result = loginSchema.shape[field].safeParse(formData.value[field]);
@@ -46,7 +47,7 @@ const checkField = (field) => {
   }
 };
 
-const handleLogin = () => {
+const handleLogin = async () => {
   console.log(formData.value);
 
   const loginResult = loginSchema.safeParse(formData.value);
@@ -55,6 +56,18 @@ const handleLogin = () => {
 
   if (loginResult.success === true) {
     console.log("驗證成功");
+    try {
+      const res = await onLogin(formData.value);
+
+      console.log(res);
+      console.log("token", res.data.token);
+
+      const token = res.data.token;
+
+      cookie.set(token)
+    } catch (error) {
+      console.log(error);
+    }
   } else {
     console.log("驗證false");
     errorMessage.value.text = "登入失敗";

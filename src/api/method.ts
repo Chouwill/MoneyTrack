@@ -7,3 +7,12 @@ export function onRegister(data: object) {
     data,
   });
 }
+
+
+export function onLogin(data: object) {
+  return apiClient({
+    url: `/api/login`,
+    method: "post",
+    data,
+  });
+}
