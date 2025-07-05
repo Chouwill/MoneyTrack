@@ -3,7 +3,7 @@ import InputText from "primevue/inputtext";
 import { onLogin } from "../api/method";
 import { ref } from "vue";
 import { z } from "zod";
-import cookie from "../util/useCookie"
+import cookie from "../util/useCookie";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "email必填" }).nonempty(),
@@ -24,8 +24,11 @@ const errorMessage = ref({
   text: "",
 });
 
-const checkField = (field:any) => {
+type fieldType = "password" | "email";
+
+const checkField = (field: fieldType) => {
   console.log("單欄驗證", formData.value);
+  console.log("field", field);
 
   const result = loginSchema.shape[field].safeParse(formData.value[field]);
 
@@ -64,7 +67,7 @@ const handleLogin = async () => {
 
       const token = res.data.token;
 
-      cookie.set(token)
+      cookie.set(token);
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +105,7 @@ const value = ref(null);
           v-model="formData.password"
           @blur="checkField('password')"
         />
+
         <p class="errorText" v-if="errorMessage.password">
           {{ errorMessage.password }}
         </p>
