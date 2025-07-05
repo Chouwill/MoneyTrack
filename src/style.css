@@ -1,12 +1,13 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 
+
 body {
   background: linear-gradient(to right, #e0eafc, #cfdef3);
 }
 * {
   box-sizing: border-box;
-  border: none;
+  /* border: none !important; */
 }
 
 .login {
@@ -22,4 +23,11 @@ form{
 
 .errorText{
 color: red;
+}
+
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
