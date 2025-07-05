@@ -16,3 +16,14 @@ export function onLogin(data: object) {
     data,
   });
 }
+
+export function getEconomy(data: object) {
+  return apiClient({
+    url: `/api/get/data/economy`,
+    method: "get",
+    data,
+  });
+}
+
+
+// http://localhost:3000/get/data/economy
