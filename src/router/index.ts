@@ -16,6 +16,11 @@ const routes = [
     name: "Register",
     component: () => import("../page/Register.vue"),
   },
+  {
+    path: "/adminPanel",
+    name: "AdminPanel",
+    component: () => import("../page/AdminPanel.vue"),
+  },
 ];
 
 const router = createRouter({
