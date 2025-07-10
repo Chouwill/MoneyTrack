@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 
-
 body {
   background: linear-gradient(to right, #e0eafc, #cfdef3);
 }
@@ -10,22 +9,28 @@ body {
   /* border: none !important; */
 }
 
+.card-title {
+  width: 100%;
+
+  border: 1px solid green;
+
+}
+
 .login {
   background: rgba(255, 255, 255, 0.35);
   border: 5px solid rgba(255, 255, 255, 0.2);
   /* border: 5px solid red; */
 }
 
-form{
+form {
   /* border: 5px solid rgb(151, 14, 133); */
 }
 
-
-.errorText{
-color: red;
+.errorText {
+  color: red;
 }
 
-.card {
+.IndexCard {
   background: white;
   border-radius: 1rem;
   padding: 1rem;
