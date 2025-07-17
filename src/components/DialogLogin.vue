@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
 
-import { ref } from "vue";
+import { ref,defineExpose } from "vue";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 
-const visible = ref(false);
+// const visible = ref(false);
 
 import { onLogin } from "../api/method";
 
@@ -86,11 +86,15 @@ const handleLogin = async () => {
 };
 
 const value = ref(null);
+
+
+const visible = ref(false)
+defineExpose({ visible }) 
 </script>
 
 <template>
   <div class="card flex justify-center items-center border">
-    <Button label="Show" @click="visible = true" />
+    <!-- <Button label="Show" @click="visible = true" /> -->
     <Dialog
       v-model:visible="visible"
       modal

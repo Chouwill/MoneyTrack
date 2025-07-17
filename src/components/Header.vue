@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(["open-login"])
+
+</script>
 
 <template>
   <header class="flex w-full p-4">
@@ -12,10 +17,11 @@
       class="member-center w-[50%] flex justify-around items-center md:justify-end md:px-4"
     >
       <div class="member-link flex gap-5">
-        <router-link
+        <button
           to="/login"
+          @click="emit('open-login')"
           class="bg-[#5b86e5] text-[white] rounded-lg border px-5 py-2"
-          >登入</router-link
+          >登入</button
         >
         <router-link
           to="/register"
