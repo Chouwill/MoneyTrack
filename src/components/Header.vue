@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue';
+import { defineEmits } from "vue";
 
-const emit = defineEmits(["open-login"])
-
+const emit = defineEmits(["open-login","open-register"]);
 </script>
 
 <template>
@@ -18,15 +17,16 @@ const emit = defineEmits(["open-login"])
     >
       <div class="member-link flex gap-5">
         <button
-          to="/login"
+          
           @click="emit('open-login')"
           class="bg-[#5b86e5] text-[white] rounded-lg border px-5 py-2"
-          >登入</button
         >
-        <router-link
-          to="/register"
+          登入
+        </button>
+        <button
+          @click="emit('open-register')"
           class="bg-[white] text-[#5b86e5] rounded-lg border px-5 py-2"
-          >註冊</router-link
+          >註冊</button
         >
       </div>
     </div>
