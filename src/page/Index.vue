@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Button from 'primevue/button';
 
+
 import 'primeicons/primeicons.css'
 
 import InputText from "primevue/inputtext";
@@ -45,7 +46,7 @@ getData();
       </form>
     </div>
     <div class="card-box flex flex-wrap gap-2 justify-around items-center my-5">
-      <div v-for="item in datas" :key="item.id" class="card w-xs my-2 flex-col justify-center md:p-5">
+      <div v-for="item in datas" :key="item.id" class="IndexCard w-xs my-2 flex-col justify-center md:p-5">
         <h2>名稱：{{ item.name }}</h2>
         <h2>代號：{{ item.code }}</h2>
         <h2>交易動作：{{ item.action }}</h2>

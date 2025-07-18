@@ -83,12 +83,14 @@ const value = ref(null);
 <template>
   <div class="w-[80%] login rounded-xl border m-20 md:w-[20%]">
     <form
-      class="w-full border flex flex-col justify-center items-center gap-10 py-10"
+      class="w-full bg-[white] rounded-2xl border flex flex-col justify-center items-center gap-10 py-10"
     >
-      <div class="flex flex-col gap-1">
-        <label class="block" for="email">帳號</label>
+      <h1 class="text-3xl">登入你的帳號</h1>
+      <div class="flex flex-col gap-1 w-[80%]">
+        <!-- <label class="block" for="email">帳號</label> -->
         <InputText
-          class="w-full rounded-xl"
+          class="w-full rounded-xl border"
+          placeholder="Email"
           type="text"
           v-model="formData.email"
           @blur="checkField('email')"
@@ -97,10 +99,11 @@ const value = ref(null);
           {{ errorMessage.email }}
         </p>
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="block" for="password">密碼</label>
+      <div class="flex flex-col gap-1 border w-[80%]">
+        <!-- <label class="block" for="password">密碼</label> -->
         <InputText
           class="w-full rounded-xl"
+          placeholder="密碼"
           type="text"
           v-model="formData.password"
           @blur="checkField('password')"
@@ -110,9 +113,9 @@ const value = ref(null);
           {{ errorMessage.password }}
         </p>
       </div>
-      <div class="w-full flex justify-center border py-2">
+      <div class="w-[80%] flex justify-center border py-2">
         <button
-          class="bg-[#5b86e5] text-[white] rounded-lg border px-5 py-2"
+          class="bg-[#DEE33E] w-full text-[black] text-base rounded-lg border px-5 py-2"
           @click="handleLogin"
         >
           登入
@@ -123,4 +126,8 @@ const value = ref(null);
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.p-inputtext {
+  --p-inputtext-background: #f9f9f9;
+}
+</style>
