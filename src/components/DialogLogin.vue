@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
 
-import { ref,defineExpose } from "vue";
+import { ref, defineExpose,watch } from "vue";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 
@@ -12,7 +12,9 @@ import { onLogin } from "../api/method";
 import { z } from "zod";
 import cookie from "../util/useCookie";
 import type { display } from "@primeuix/themes/aura/inplace";
+import { useUserStore } from "../store/user";
 
+const store = useUserStore();
 const loginSchema = z.object({
   email: z.string().email({ message: "email必填" }).nonempty(),
   password: z
@@ -22,8 +24,8 @@ const loginSchema = z.object({
 });
 
 const formData = ref({
-  email: "",
-  password: "",
+  email: "qwer@yahoo.com.tw",
+  password: "12345",
 });
 
 const errorMessage = ref({
@@ -60,7 +62,7 @@ const checkField = (field: fieldType) => {
 
 const handleLogin = async () => {
   console.log(formData.value);
-
+  console.log("登入前", store.isLoginStatus);
   const loginResult = loginSchema.safeParse(formData.value);
 
   console.log(loginResult);
@@ -68,14 +70,16 @@ const handleLogin = async () => {
   if (loginResult.success === true) {
     console.log("驗證成功");
     try {
-      const res = await onLogin(formData.value);
+      const res = await store.handleLogin(formData.value);
 
       console.log(res);
-      console.log("token", res.data.token);
+      // console.log("token", res.data.token);
 
-      const token = res.data.token;
+      // const token = res.data.token;
 
-      cookie.set(token);
+      // cookie.set(token);
+        console.log("登入後", store.isLoginStatus);
+
     } catch (error) {
       console.log(error);
     }
@@ -85,11 +89,15 @@ const handleLogin = async () => {
   }
 };
 
+
+watch(() => store.isLoginStatus, (val) => {
+  // console.log("🟡 登入狀態變化：", val);
+});
+
 const value = ref(null);
 
-
-const visible = ref(false)
-defineExpose({ visible }) 
+const visible = ref(false);
+defineExpose({ visible });
 </script>
 
 <template>
@@ -99,14 +107,14 @@ defineExpose({ visible })
       v-model:visible="visible"
       modal
       header="登入表單"
-      :style="{ width: '90%',maxWidth: '450px' }"
+      :style="{ width: '90%', maxWidth: '450px' }"
       :contentStyle="{
         display: 'flex',
         justifyContent: 'center',
       }"
       contentClass="p-0"
     >
-      <div class="w-[100%] login rounded-xl border  max-w-md">
+      <div class="w-[100%] login rounded-xl border max-w-md">
         <form
           class="w-full bg-[white] rounded-2xl border flex flex-col justify-center items-center gap-10 py-10"
         >

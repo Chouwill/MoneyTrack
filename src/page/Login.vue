@@ -5,6 +5,10 @@ import { ref } from "vue";
 import { z } from "zod";
 import cookie from "../util/useCookie";
 
+import { useUserStore } from "../store/user";
+
+const store = useUserStore();
+
 const loginSchema = z.object({
   email: z.string().email({ message: "email必填" }).nonempty(),
   password: z
@@ -50,31 +54,12 @@ const checkField = (field: fieldType) => {
   }
 };
 
-const handleLogin = async () => {
-  console.log(formData.value);
+const handleLogin = async() => {
+  console.log("4444", formData.value);
+  console.log("登入前", store.isLoginStatus);
+  console.log("登入後", store.isLoginStatus);
 
-  const loginResult = loginSchema.safeParse(formData.value);
-
-  console.log(loginResult);
-
-  if (loginResult.success === true) {
-    console.log("驗證成功");
-    try {
-      const res = await onLogin(formData.value);
-
-      console.log(res);
-      console.log("token", res.data.token);
-
-      const token = res.data.token;
-
-      cookie.set(token);
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    console.log("驗證false");
-    errorMessage.value.text = "登入失敗";
-  }
+  store.handleLogin(formData.value);
 };
 
 const value = ref(null);

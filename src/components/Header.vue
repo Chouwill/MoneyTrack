@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { defineEmits } from "vue";
+import { defineEmits,watch } from "vue";
+import { useUserStore } from "../store/user";
+
+const store = useUserStore();
 
 const emit = defineEmits(["open-login","open-register"]);
+
+
+watch(() => store.isLoginStatus, (val) => {
+  console.log("Header登入狀態變化：", val);
+});
 </script>
 
 <template>
@@ -29,6 +37,8 @@ const emit = defineEmits(["open-login","open-register"]);
           >註冊</button
         >
       </div>
+
+      
     </div>
   </header>
 </template>
