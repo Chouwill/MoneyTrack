@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
 
-import { ref, defineExpose,watch } from "vue";
+import { ref, defineExpose, watch } from "vue";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 
@@ -15,6 +15,9 @@ import type { display } from "@primeuix/themes/aura/inplace";
 import { useUserStore } from "../store/user";
 
 const store = useUserStore();
+
+const visible = ref(false);
+
 const loginSchema = z.object({
   email: z.string().email({ message: "email必填" }).nonempty(),
   password: z
@@ -78,8 +81,8 @@ const handleLogin = async () => {
       // const token = res.data.token;
 
       // cookie.set(token);
-        console.log("登入後", store.isLoginStatus);
-
+      console.log("登入後", store.isLoginStatus);
+      visible.value = false;
     } catch (error) {
       console.log(error);
     }
@@ -89,14 +92,15 @@ const handleLogin = async () => {
   }
 };
 
-
-watch(() => store.isLoginStatus, (val) => {
-  // console.log("🟡 登入狀態變化：", val);
-});
+watch(
+  () => store.isLoginStatus,
+  (val) => {
+    // console.log("🟡 登入狀態變化：", val);
+  }
+);
 
 const value = ref(null);
 
-const visible = ref(false);
 defineExpose({ visible });
 </script>
 
