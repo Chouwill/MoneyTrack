@@ -9,9 +9,9 @@ const menuItems = [
 </script>
 
 <template>
-  <div class="container w-[256px] h-1024 bg-white fixed left-0 top-0">
+  <div class="container w-[256px] h-1024 bg-white ">
     <aside>
-      <div class="logo flex justify-center items-center py-5">
+      <div class="logo flex justify-center items-center ">
         <img src="/src/assets/LOGO.png" alt="" />
       </div>
       <nav>
