@@ -29,7 +29,7 @@ function onSignUp() {
 </script>
 
 <template>
-  <header class="flex w-full py-4 border justify-center items-center bg-white">
+  <header class="flex w-full py-4 border justify-center items-center ps-40 bg-white">
     <div class="w-[85%] flex border border-red-500 justify-around items-center">
       <div class="w-[250px] border flex flex-col gap-1">
         <h2 class="text-2xl">Hi, welcome back</h2>

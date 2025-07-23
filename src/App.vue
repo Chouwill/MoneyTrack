@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import Header from "./components/Header.vue";
+import SidebarMenu from "./components/SidebarMenu.vue";
 import Button from "primevue/button";
 import DialogLogin from "./components/DialogLogin.vue";
 import { ref } from "vue";
 import DialogRegister from "./components/DialogRegister.vue";
 // import { handle } from "@primeuix/themes/aura/imagecompare";
 
-const loginDialog = ref<{visible:boolean}| null>(null);
+const loginDialog = ref<{ visible: boolean } | null>(null);
 
-const registerDialog = ref<{visible:boolean}| null>(null);
-
+const registerDialog = ref<{ visible: boolean } | null>(null);
 
 function handleLogin() {
   loginDialog.value!.visible = true;
@@ -23,10 +23,10 @@ function handleRegister() {
   <div
     class="container border max-w-none flex justify-center items-center flex-col"
   >
-    <Header @open-login="handleLogin" 
-    @open-register="handleRegister"/>
+    <Header @open-login="handleLogin" @open-register="handleRegister" />
+    <SidebarMenu />
     <DialogLogin ref="loginDialog" />
-    <DialogRegister ref="registerDialog"/>
+    <DialogRegister ref="registerDialog" />
     <Router-view></Router-view>
   </div>
 </template>
