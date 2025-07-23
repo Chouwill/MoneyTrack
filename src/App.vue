@@ -21,12 +21,15 @@ function handleRegister() {
 
 <template>
   <div
-    class="container border max-w-none flex justify-center items-center flex-col"
+    class="container border max-w-none flex justify-center items-center flex-col relative"
   >
     <Header @open-login="handleLogin" @open-register="handleRegister" />
-    <SidebarMenu />
+    <div class="w-full  border flex justify-start items-start">
+      <SidebarMenu class="absolute top-10" />
+    </div>
     <DialogLogin ref="loginDialog" />
     <DialogRegister ref="registerDialog" />
     <Router-view></Router-view>
   </div>
 </template>
+
