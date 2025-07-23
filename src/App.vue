@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from "./components/Header.vue";
-import SidebarMenu from "./components/SidebarMenu.vue";
+// import SidebarMenu from "./components/SidebarMenu.vue";
 import Button from "primevue/button";
 import DialogLogin from "./components/DialogLogin.vue";
 import { ref } from "vue";

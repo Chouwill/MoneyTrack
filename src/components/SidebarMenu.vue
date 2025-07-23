@@ -1,6 +1,6 @@
 <script setup>
 const menuItems = [
-  { label: "儀表板", icon: "pi pi-home", route: "/dashboard" },
+  { label: "儀表板", icon: "pi pi-home", route: "/back-dashboard" },
   { label: "新增紀錄", icon: "pi pi-plus", route: "/add" },
   { label: "紀錄列表", icon: "pi pi-list", route: "/records" },
   { label: "圖表分析", icon: "pi pi-chart-bar", route: "/charts" },

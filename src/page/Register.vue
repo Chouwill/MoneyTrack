@@ -14,7 +14,7 @@ const formData = ref({
 });
 
 const errorMessage = ref({
-  email: "",
+  email: "",｀
   password: "",
   confirmPassword: "",
   text: "",

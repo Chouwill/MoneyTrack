@@ -21,6 +21,16 @@ const routes = [
     name: "AdminPanel",
     component: () => import("../page/AdminPanel.vue"),
   },
+  {
+    path: "/adminPanel",
+    name: "AdminPanel",
+    component: () => import("../page/AdminPanel.vue"),
+  },
+  {
+    path: "/back-dashboard",
+    name: "Dashboard",
+    component: () => import("../page/backstage/Dashboard.vue"),
+  },
 ];
 
 const router = createRouter({
