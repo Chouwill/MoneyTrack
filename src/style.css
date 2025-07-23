@@ -15,6 +15,10 @@ body {
   border: 1px solid green;
 
 }
+.p-inputtext{
+  background: #f5f5f5 !important;
+
+}
 
 .login {
   background: rgba(255, 255, 255, 0.35);
