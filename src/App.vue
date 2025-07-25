@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from "./components/Header.vue";
-// import SidebarMenu from "./components/SidebarMenu.vue";
+import SidebarMenu from "./components/SidebarMenu.vue";
 import Button from "primevue/button";
 import DialogLogin from "./components/DialogLogin.vue";
 import { ref } from "vue";
@@ -20,16 +20,26 @@ function handleRegister() {
 </script>
 
 <template>
-  <div
-    class="container border max-w-none flex justify-center items-center flex-col relative"
-  >
-    <Header @open-login="handleLogin" @open-register="handleRegister" />
-    <div class="w-full  border flex justify-start items-start">
-      <SidebarMenu class="absolute top-10" />
+  <div class="grid grid-cols-4 grid-rows-[auto_1fr] min-h-screen">
+
+    <!-- Header：橫跨 4 欄 -->
+    <Header
+      class="col-span-4 row-start-1 row-end-2"
+      @open-login="handleLogin"
+      @open-register="handleRegister"
+    />
+
+    <!-- Sidebar：佔第 1 欄 -->
+    <SidebarMenu class="col-span-1 row-start-2 bg-gray-100" />
+
+    <!-- Main：佔第 2–4 欄（共 3 欄） -->
+    <div class="col-span-3 row-start-2 p-6 overflow-auto">
+      <RouterView />
     </div>
+
+    <!-- Dialogs：無需格線 -->
     <DialogLogin ref="loginDialog" />
     <DialogRegister ref="registerDialog" />
-    <Router-view></Router-view>
   </div>
 </template>
 
