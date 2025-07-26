@@ -19,21 +19,24 @@ function handleRegister() {
 }
 </script>
 
-<template>
-  <div class="grid grid-cols-4 grid-rows-[auto_1fr] min-h-screen">
+| sidebar | header | | sidebar | main | grid-template-areas grid-area
 
+<template>
+  <div
+    class="layout grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-screen"
+  >
     <!-- Header：橫跨 4 欄 -->
     <Header
-      class="col-span-4 row-start-1 row-end-2"
+      class="layout-header col-span-4 row-start-1 row-end-2"
       @open-login="handleLogin"
       @open-register="handleRegister"
     />
 
     <!-- Sidebar：佔第 1 欄 -->
-    <SidebarMenu class="col-span-1 row-start-2 bg-gray-100" />
+    <SidebarMenu class="layout-sidebar col-span-1 row-start-2 bg-gray-100" />
 
     <!-- Main：佔第 2–4 欄（共 3 欄） -->
-    <div class="col-span-3 row-start-2 p-6 overflow-auto">
+    <div class="layout-main col-span-3 row-start-2 p-6 overflow-auto">
       <RouterView />
     </div>
 
@@ -43,3 +46,19 @@ function handleRegister() {
   </div>
 </template>
 
+<style lang="scss" scoped>
+.layout {
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  &-header {
+    grid-area: header;
+  }
+  &-sidebar {
+    grid-area: sidebar;
+  }
+  &-main {
+    grid-area: main;
+  }
+}
+</style>

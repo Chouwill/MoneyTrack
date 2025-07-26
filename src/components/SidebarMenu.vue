@@ -11,8 +11,8 @@ const menuItems = [
 <template>
   <div class="container w-[256px] h-auto bg-white ">
     <aside>
-      <div class="logo flex justify-center items-center ">
-        <img src="/src/assets/LOGO.png" alt="" />
+      <div class="logo flex justify-center items-center p-5 ">
+        <img src="/src/assets/LOGO.svg" alt="" />
       </div>
       <nav>
         <ul

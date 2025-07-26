@@ -29,8 +29,8 @@ function onSignUp() {
 </script>
 
 <template>
-  <header class="flex w-full py-4 border justify-center items-center ps-40 bg-white">
-    <div class="w-[85%] flex border border-red-500 justify-around items-center">
+  <header class="flex w-full py-4 border justify-center items-center  bg-white">
+    <div class="w-full flex border border-red-500 justify-around items-center">
       <div class="w-[250px] border flex flex-col gap-1">
         <h2 class="text-2xl">Hi, welcome back</h2>
         <p>Let’s check your items today</p>
@@ -38,7 +38,8 @@ function onSignUp() {
       <div class="w-[412px] flex justify-center items-center border relative">
         <div class="w-[312px] relative flex items-center">
           <i class="pi pi-search absolute left-3 text-gray-400"></i>
-          <InputText class="w-full pl-10 py-2" placeholder="" />
+          <InputText class="w-full  py-2" placeholder="search" 
+          style="padding-left: 36px;"/>
         </div>
       </div>
       <div class="w-[100px] flex items-center justify-center gap-5 border">
