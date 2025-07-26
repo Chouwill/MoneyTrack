@@ -9,7 +9,7 @@ const menuItems = [
 </script>
 
 <template>
-  <div class="container w-[256px] h-1024 bg-white ">
+  <div class="container w-[256px] h-auto bg-white ">
     <aside>
       <div class="logo flex justify-center items-center ">
         <img src="/src/assets/LOGO.png" alt="" />

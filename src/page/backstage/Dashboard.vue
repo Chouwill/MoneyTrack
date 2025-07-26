@@ -1,230 +1,222 @@
 <template>
-  <div class="back-wraper grid grid-cols-4 gap-4 w-full max-w-[100%] h-auto   py-6">
-    <div
-      class="monthly-investment-cost-chart col-start-1 col-end-3 border max-w-[500px] h-[300px] "
-    >
-      <h2 class="text-center">投資成本月趨勢圖</h2>
-      <Chart
-        type="line"
-        :data="chartData"
-        :options="chartOptions"
-        class="w-full h-full"
-      />
+  <div class="w-full border max-w-[1200px] mx-auto px-6 py-8 space-y-8 bg-gray-50 ">
+
+    <div class="grid grid-cols-[3fr_1fr] gap-8">
+      <div class="bg-white rounded-xl shadow p-6 h-[400px]">
+        <h2 class="text-lg font-semibold text-gray-700 mb-4 text-center">投資成本月趨勢圖</h2>
+        <Line :data="chartData" :options="chartOptions" />
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
+        <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">📌 您持有的股票</h2>
+        <ul class="flex flex-col gap-3">
+          <li class="w-full border rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition bg-gray-50">
+            <div class="flex justify-between items-center">
+              <div class="flex flex-col">
+                <span class="font-semibold text-base text-gray-800">2330 台積電</span>
+                <span class="text-gray-400 text-xs">2025-07-26</span>
+              </div>
+              <span class="text-xl font-bold text-green-600">650.00</span>
+            </div>
+          </li>
+          <li class="w-full border rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition bg-gray-50">
+            <div class="flex justify-between items-center">
+              <div class="flex flex-col">
+                <span class="font-semibold text-base text-gray-800">0056 高股息</span>
+                <span class="text-gray-400 text-xs">2025-07-25</span>
+              </div>
+              <span class="text-xl font-bold text-red-600">38.00</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul class="col-start-4 col-end-4 flex flex-col justify-center items-center">
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-      <li>00000</li>
-    </ul>
+
+    <div class="grid grid-cols-2 gap-8">
+      <div class="bg-white rounded-xl shadow p-6 flex items-start gap-6">
+        <div class="w-[250px] h-[300px]">
+          <Doughnut :data="doughnutData" :options="chartOptions" />
+        </div>
+        <ul class="list-disc text-sm text-gray-600 leading-6 pl-4">
+          <li>電子股 55%</li>
+          <li>金融股 25%</li>
+          <li>其他產業 20%</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-lg font-semibold text-center text-gray-700 mb-4">各股票持有狀況</h2>
+        <div class="w-full h-[300px]">
+          <Bar :data="barData" :options="barOptions" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Chart from "primevue/chart";
+import { Line, Doughnut, Bar } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  ArcElement,
+} from "chart.js";
 
-onMounted(() => {
-  chartData.value = setChartData();
-  chartOptions.value = setChartOptions();
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  PointElement,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  ArcElement
+);
+
+const chartData = ref({
+  labels: [
+    "一月",
+    "二月",
+    "三月",
+    "四月",
+    "五月",
+    "六月",
+    "七月",
+    "八月",
+    "九月",
+    "十月",
+    "十一月",
+    "十二月",
+  ],
+  datasets: [
+    {
+      label: "現在",
+      data: [40, 20, 12, 30, 25, 10, 18, 22, 35, 15, 28, 31],
+      borderColor: "#f87979",
+      tension: 0,
+    },
+    {
+      label: "過去",
+      data: [70, 6, 10, 15, 20, 25, 30, 16, 12, 33, 19, 20],
+      borderColor: "green",
+      tension: 0,
+    },
+  ],
 });
 
-const chartData = ref();
-const chartOptions = ref();
+const doughnutData = ref({
+  labels: ["股票", "現金", "ETF"],
+  datasets: [
+    {
+      label: "資產類別",
+      data: [50, 30, 20],
+      backgroundColor: ["#42A5F5", "#66BB6A", "#FFA726"],
+    },
+  ],
+});
 
-const setChartData = () => {
-  const documentStyle = getComputedStyle(document.documentElement);
+const barData = ref({
+  labels: ["台積電", "鴻海", "聯電", "長榮", "中鋼"],
+  datasets: [
+    {
+      label: "持有股數",
+      data: [120, 80, 60, 90, 70],
+      backgroundColor: "#42A5F5",
+    },
+    {
+      label: "持有時間（月）",
+      data: [24, 18, 12, 6, 9],
+      backgroundColor: "#66BB6A",
+    },
+  ],
+});
 
-  return {
-    labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
-    datasets: [
-      {
-        label: "First Dataset",
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        borderColor: documentStyle.getPropertyValue("--p-cyan-500"),
-        tension: 0.4,
-      },
-      {
-        label: "Second Dataset",
-        data: [28, 48, 40, 19, 86, 27, 90],
-        fill: false,
-        borderColor: documentStyle.getPropertyValue("--p-gray-500"),
-        tension: 0.4,
-      },
-    ],
-  };
-};
-const setChartOptions = () => {
-  const documentStyle = getComputedStyle(document.documentElement);
-  const textColor = documentStyle.getPropertyValue("--p-text-color");
-  const textColorSecondary = documentStyle.getPropertyValue(
-    "--p-text-muted-color"
-  );
-  const surfaceBorder = documentStyle.getPropertyValue(
-    "--p-content-border-color"
-  );
-
-  return {
-    maintainAspectRatio: false,
-    aspectRatio: 0.6,
-
-    plugins: {
-      legend: {
-        labels: {
-          color: textColor,
-        },
+const barOptions = ref({
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    tooltip: {
+      mode: "index",
+      intersect: false,
+    },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: "數值",
       },
     },
-    scales: {
-      x: {
-        ticks: {
-          color: textColorSecondary,
-        },
-        grid: {
-          color: surfaceBorder,
-        },
-      },
-      y: {
-        ticks: {
-          color: textColorSecondary,
-        },
-        grid: {
-          color: surfaceBorder,
-        },
-      },
-    },
-  };
-};
+  },
+});
+
+const chartOptions = ref({
+  responsive: true,
+  maintainAspectRatio: false,
+});
 </script>
 
 <style>
-.back-wraper {
-  width: 100% !important;
-  border: 3px solid red !important;
+.list {
+  /* border: 2px solid red !important; */
 }
 </style>
 
-<!-- <template>
-  <div class="chart-wrapper flex justify-center items-center p-6 bg-[#F4F7FE] min-h-[400px]">
-    <div class="investment-trend-chart w-[600px] border rounded-lg shadow-md p-4 bg-white">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <h3 class="text-sm text-gray-500">總成本</h3>
-          <p class="text-2xl font-bold text-gray-800">NT$ 112,500</p>
-        </div>
-        <div>
-          <select class="border border-gray-300 rounded px-2 py-1 text-sm text-gray-700">
-            <option>過去 7 個月</option>
-            <option>過去 6 個月</option>
-            <option>今年至今</option>
-          </select>
-        </div>
-      </div>
+<!-- <script>
+import { Line } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
 
-      <h2 class="text-lg font-semibold mb-4 text-center">
-        每月投資成本趨勢圖
-      </h2>
-      <Chart
-        type="line"
-        :data="chartData"
-        :options="chartOptions"
-        class="w-full h-[300px]"
-      />
-    </div>
-  </div>
-</template>
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  PointElement,
+  LineElement,
+  CategoryScale,
+  LinearScale
+);
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import Chart from 'primevue/chart';
-
-const chartData = ref();
-const chartOptions = ref();
-
-onMounted(() => {
-  chartData.value = setChartData();
-  chartOptions.value = setChartOptions();
-});
-
-const setChartData = () => {
-  return {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: '投資成本（A）',
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        borderColor: '#8DD65C',
-        tension: 0.4,
-        pointBackgroundColor: '#8DD65C',
-        pointRadius: 5
+export default {
+  name: "BarChart",
+  components: { Line },
+  data() {
+    return {
+      chartData: {
+        labels: ["January", "February", "March"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: [40, 20, 12],
+          },
+        ],
       },
-      {
-        label: '投資成本（B）',
-        data: [28, 48, 40, 19, 86, 27, 90],
-        fill: false,
-        borderColor: '#00C4CC',
-        tension: 0.4,
-        pointBackgroundColor: '#00C4CC',
-        pointRadius: 5
-      }
-    ]
-  };
+    };
+  },
 };
-
-const setChartOptions = () => {
-  return {
-    maintainAspectRatio: false,
-    aspectRatio: 0.6,
-    plugins: {
-      legend: {
-        labels: {
-          color: '#334155'
-        }
-      },
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            return `NT$ ${context.parsed.y.toLocaleString()}`;
-          }
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: '#94A3B8'
-        },
-        grid: {
-          color: '#E2E8F0'
-        }
-      },
-      y: {
-        ticks: {
-          color: '#94A3B8'
-        },
-        grid: {
-          color: '#E2E8F0'
-        }
-      }
-    }
-  };
-};
-</script>
-
-<style scoped>
-.chart-wrapper {
-
-  border: 3px solid red !important;
-
-}
-
-.investment-trend-chart {
-  background-color: #fff;
-}
-</style> -->
+</script> -->
