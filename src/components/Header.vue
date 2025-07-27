@@ -31,33 +31,22 @@ function onSignUp() {
 <template>
   <header class="flex w-full py-4 border justify-center items-center  bg-white">
     <div class="w-full flex border border-red-500 justify-around items-center">
-      <div class="w-[250px] border flex flex-col gap-1">
+      <div class="w-[25rem] border flex flex-col gap-1">
         <h2 class="text-2xl">Hi, welcome back</h2>
         <p>Let’s check your items today</p>
       </div>
-      <div class="w-[412px] flex justify-center items-center border relative">
-        <div class="w-[312px] relative flex items-center">
+      <div class="w-[25rem] flex justify-center items-center border relative">
+        <div class="w-[6.25rem] relative flex items-center">
           <i class="pi pi-search absolute left-3 text-gray-400"></i>
           <InputText class="w-full  py-2" placeholder="search" 
           style="padding-left: 36px;"/>
         </div>
       </div>
-      <div class="w-[100px] flex items-center justify-center gap-5 border">
-        <span class="pi pi-envelope"></span>
-        <span class="pi pi-bell"></span>
+      <div class="w-[15rem] flex items-center justify-center gap-5 border">
+        <span class="pi pi-envelope" style="font-size: 1.7rem;"></span>
+        <span class="pi pi-bell" style="font-size: 1.7rem;"></span>
       </div>
 
-      <!-- <div class="w-[181px] flex justify-between items-center gap-3 border">
-        <div
-          class="flex justify-center items-center border w-[48px] h-[48px] bg-orange-300 rounded-full"
-        >
-          <img class="w-[48px] h-[48px]" src="../assets/user.png" alt="" />
-        </div>
-        <div class="">
-          <h3>Cody Fisher</h3>
-          <h3>Cody Fisher</h3>
-        </div>
-      </div> -->
       <div class="member-link flex justify-center items-center gap-5">
         <button
           @click="emit('open-login')"
